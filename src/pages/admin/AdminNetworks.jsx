@@ -6,6 +6,7 @@ export default function AdminNetworks() {
   const [error, setError] = useState('')
   const [label, setLabel] = useState('')
   const [ip, setIp] = useState('')
+  const [detectedIp, setDetectedIp] = useState('')
   const [busy, setBusy] = useState(false)
 
   function load() {
@@ -26,6 +27,20 @@ export default function AdminNetworks() {
       setLabel('')
       setIp('')
       load()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function checkCurrentIp() {
+    setError('')
+    setBusy(true)
+    try {
+      const res = await api.get('/admin/office-networks/current-ip')
+      setDetectedIp(res.detected_ip)
+      setIp(res.detected_ip)
     } catch (err) {
       setError(err.message)
     } finally {

@@ -15,8 +15,8 @@ export default defineConfig({
         name: 'Office Attendance',
         short_name: 'Attendance',
         description: 'WiFi/IP based office attendance tracking',
-        theme_color: '#2563eb',
-        background_color: '#ffffff',
+        theme_color: '#0a0a0c',
+        background_color: '#0a0a0c',
         display: 'standalone',
         start_url: '/',
         icons: [
