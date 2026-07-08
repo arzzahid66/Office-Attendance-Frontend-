@@ -38,6 +38,19 @@ export default function AdminDashboard() {
           </div>
           <p className="muted" style={{ margin: 0 }}>{r.email}</p>
           <div className="row" style={{ marginTop: 8, marginBottom: 0 }}>
+            <span className="muted">Location</span>
+            <span style={{ textAlign: 'right' }}>
+              {r.mode === 'wfh'
+                ? 'Remote / WFH'
+                : r.location
+                  ? r.location
+                  : r.check_in
+                    ? 'Unknown network'
+                    : '—'}
+              {r.source_ip && <span className="muted"> · {r.source_ip}</span>}
+            </span>
+          </div>
+          <div className="row" style={{ marginTop: 4, marginBottom: 0 }}>
             <span className="muted">In / Out</span>
             <span>
               {formatTime(r.check_in)} / {formatTime(r.check_out)}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
+import ThemeToggle from '../components/ThemeToggle'
 
 export default function Login() {
   const { login } = useAuth()
@@ -26,6 +27,9 @@ export default function Login() {
 
   return (
     <div className="center-page">
+      <div style={{ position: 'absolute', top: 16, right: 16 }}>
+        <ThemeToggle />
+      </div>
       <div className="auth-card">
         <h1>Office Attendance</h1>
         <p className="muted">Sign in with your account</p>

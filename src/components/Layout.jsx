@@ -2,11 +2,13 @@ import { NavLink } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
 import useHeartbeat from '../hooks/useHeartbeat'
 import CheckBanner from './CheckBanner'
+import ThemeToggle from './ThemeToggle'
 
 const employeeTabs = [
   { to: '/', label: 'Today' },
   { to: '/history', label: 'History' },
   { to: '/wfh', label: 'WFH' },
+  { to: '/schedule', label: 'Hours' },
 ]
 
 const adminTabs = [
@@ -14,6 +16,7 @@ const adminTabs = [
   { to: '/admin/employees', label: 'Employees' },
   { to: '/admin/networks', label: 'Networks' },
   { to: '/admin/wfh', label: 'WFH' },
+  { to: '/admin/schedule', label: 'Hours' },
   { to: '/admin/reports', label: 'Reports' },
   { to: '/admin/flagged', label: 'Flagged' },
 ]
@@ -31,6 +34,7 @@ export default function Layout({ children }) {
         <h1>Office Attendance</h1>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
           <span className="role-badge">{user?.role}</span>
+          <ThemeToggle />
           <button className="link-btn" onClick={logout}>
             Logout
           </button>

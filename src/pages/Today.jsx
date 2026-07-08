@@ -70,6 +70,12 @@ export default function Today() {
             {data.ip_matched ? 'Matched' : 'Not matched'}
           </span>
         </div>
+        {data.ip_matched && data.matched_location && (
+          <div className="row">
+            <span className="muted">Matched location</span>
+            <strong>{data.matched_location}</strong>
+          </div>
+        )}
         {attendance && (
           <>
             <div className="row">

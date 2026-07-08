@@ -69,6 +69,9 @@ export default function AdminEmployees() {
             <strong>{e.name}</strong>
             <span className={`status-pill status-${e.status}`}>{e.status}</span>
           </div>
+          <p className="muted" style={{ margin: '0 0 2px' }}>
+            {e.job_title || '—'} · {e.department || '—'} · {e.city || '—'}
+          </p>
           <p className="muted" style={{ margin: '0 0 8px' }}>
             {e.email} · {e.active_device_count} device(s)
           </p>

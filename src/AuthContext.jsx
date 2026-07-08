@@ -41,8 +41,8 @@ export function AuthProvider({ children }) {
     return data.user
   }
 
-  async function signup(name, email, password) {
-    return apiRequest('/auth/signup', { method: 'POST', body: { name, email, password }, skipRefresh: true })
+  async function signup(payload) {
+    return apiRequest('/auth/signup', { method: 'POST', body: payload, skipRefresh: true })
   }
 
   function logout() {

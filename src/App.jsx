@@ -6,10 +6,12 @@ import Signup from './pages/Signup'
 import Today from './pages/Today'
 import History from './pages/History'
 import WfhRequest from './pages/WfhRequest'
+import ScheduleRequest from './pages/ScheduleRequest'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminEmployees from './pages/admin/AdminEmployees'
 import AdminNetworks from './pages/admin/AdminNetworks'
 import AdminWfh from './pages/admin/AdminWfh'
+import AdminSchedule from './pages/admin/AdminSchedule'
 import AdminReports from './pages/admin/AdminReports'
 import AdminFlagged from './pages/admin/AdminFlagged'
 
@@ -61,6 +63,16 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       />
+      <Route
+        path="/schedule"
+        element={
+          <ProtectedRoute role="employee">
+            <Layout>
+              <ScheduleRequest />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
 
       <Route
         path="/admin"
@@ -98,6 +110,16 @@ function AppRoutes() {
           <ProtectedRoute role="admin">
             <Layout>
               <AdminWfh />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/schedule"
+        element={
+          <ProtectedRoute role="admin">
+            <Layout>
+              <AdminSchedule />
             </Layout>
           </ProtectedRoute>
         }
