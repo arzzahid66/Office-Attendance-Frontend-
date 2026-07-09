@@ -31,6 +31,29 @@ export default function AdminEmployees() {
     }
   }
 
+  async function remove(e) {
+    const ok = window.confirm(
+      `Permanently delete ${e.name} (${e.email})?\n\n` +
+        'Their devices and full attendance history are deleted too, and past reports will no ' +
+        'longer include them. This cannot be undone — use Disable to keep the history.'
+    )
+    if (!ok) return
+    setBusyId(e.id)
+    setError('')
+    try {
+      await api.delete(`/admin/employees/${e.id}`)
+      if (expandedId === e.id) {
+        setExpandedId(null)
+        setDevices(null)
+      }
+      load()
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setBusyId(null)
+    }
+  }
+
   async function toggleDevices(id) {
     if (expandedId === id) {
       setExpandedId(null)
@@ -95,6 +118,9 @@ export default function AdminEmployees() {
             )}
             <button className="btn small secondary" onClick={() => toggleDevices(e.id)}>
               {expandedId === e.id ? 'Hide devices' : 'View devices'}
+            </button>
+            <button className="btn small danger" disabled={busyId === e.id} onClick={() => remove(e)}>
+              Delete
             </button>
           </div>
 
