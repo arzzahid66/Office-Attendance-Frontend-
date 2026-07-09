@@ -87,6 +87,30 @@ export async function apiRequest(path, { method = 'GET', body, skipRefresh = fal
   return data
 }
 
+// Binary/file download that still goes through BASE_URL + auth headers. Previously the CSV
+// export hardcoded '/api/...' and rebuilt headers by hand, so it ignored VITE_API_BASE_URL
+// and broke in production.
+export async function apiDownload(path, filename) {
+  let res = await doFetch(path, { method: 'GET' })
+  if (res.status === 401 && getRefreshToken() && (await tryRefresh())) {
+    res = await doFetch(path, { method: 'GET' })
+  }
+  if (!res.ok) {
+    const error = new Error(`Download failed (${res.status})`)
+    error.status = res.status
+    throw error
+  }
+  const blob = await res.blob()
+  const url = URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.href = url
+  a.download = filename
+  document.body.appendChild(a)
+  a.click()
+  a.remove()
+  URL.revokeObjectURL(url)
+}
+
 export const api = {
   get: (path) => apiRequest(path),
   post: (path, body) => apiRequest(path, { method: 'POST', body }),

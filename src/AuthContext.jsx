@@ -31,14 +31,17 @@ export function AuthProvider({ children }) {
   async function login(email, password) {
     const data = await apiRequest('/auth/login', {
       method: 'POST',
-      body: { email, password, platform: navigator.userAgent },
+      body: { email, password },
       skipRefresh: true,
     })
     setAccessToken(data.access_token)
     setRefreshToken(data.refresh_token)
     if (data.device_token) setDeviceToken(data.device_token)
-    setUser(data.user)
-    return data.user
+    // Hydrate the full profile (includes assigned_roster / shift window) rather than the
+    // lighter login payload, so the Today screen has the roster immediately.
+    const me = await api.get('/auth/me')
+    setUser(me)
+    return me
   }
 
   async function signup(payload) {

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../../api'
 
 export default function AdminEmployees() {
@@ -73,15 +74,16 @@ export default function AdminEmployees() {
             {e.job_title || '—'} · {e.department || '—'} · {e.city || '—'}
           </p>
           <p className="muted" style={{ margin: '0 0 8px' }}>
-            {e.email} · {e.active_device_count} device(s)
+            {e.email} · {e.phone || 'no phone'} · {e.active_device_count} device(s)
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {/* Approving a signup requires assigning a roster — that lives on the Approvals screen. */}
             {e.status === 'pending' && (
-              <button className="btn small" disabled={busyId === e.id} onClick={() => act(e.id, 'approve')}>
-                Approve
-              </button>
+              <Link to="/admin/approvals">
+                <button className="btn small" type="button">Review in Approvals</button>
+              </Link>
             )}
-            {e.status !== 'disabled' && (
+            {e.status !== 'disabled' && e.status !== 'pending' && (
               <button className="btn small danger" disabled={busyId === e.id} onClick={() => act(e.id, 'disable')}>
                 Disable
               </button>

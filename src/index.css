@@ -403,6 +403,13 @@ label {
   background: var(--pill-red-bg); color: var(--pill-red-text); border-color: var(--pill-red-bd);
 }
 
+/* Phase 1 attendance statuses */
+.status-present { background: var(--pill-green-bg); color: var(--pill-green-text); border-color: var(--pill-green-bd); }
+.status-late { background: var(--pill-amber-bg); color: var(--pill-amber-text); border-color: var(--pill-amber-bd); }
+.status-leave { background: var(--pill-purple-bg); color: var(--pill-purple-text); border-color: var(--pill-purple-bd); }
+.status-off_day { background: rgba(148, 163, 184, 0.16); color: var(--text-muted); border-color: var(--border); }
+.status-gps_pending { background: var(--pill-amber-bg); color: var(--pill-amber-text); border-color: var(--pill-amber-bd); }
+
 .error-box {
   background: var(--error-bg);
   color: var(--error-text);

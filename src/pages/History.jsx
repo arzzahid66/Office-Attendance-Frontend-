@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api'
 
+const clock = (iso) =>
+  iso ? new Date(iso).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—'
+
 export default function History() {
   const [rows, setRows] = useState(null)
   const [error, setError] = useState('')
@@ -17,36 +20,35 @@ export default function History() {
 
   return (
     <div>
-      <h2 style={{ fontSize: 16, marginBottom: 10 }}>Last 30 days</h2>
+      <h2 style={{ fontSize: 16, marginBottom: 10 }}>My attendance · last 30 days</h2>
       {rows.length === 0 && <p className="muted">No attendance records yet.</p>}
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Mode</th>
-            <th>In / Out</th>
-            <th>Checks</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.id}>
-              <td>{r.date}</td>
-              <td>
-                <span className={`status-pill status-${r.mode}`}>{r.mode}</span>
-              </td>
-              <td>
-                {r.check_in ? new Date(r.check_in).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—'}
-                {' / '}
-                {r.check_out ? new Date(r.check_out).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) : '—'}
-              </td>
-              <td>
-                {r.passed_checks}/{r.total_checks}
-              </td>
+      {rows.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Status</th>
+              <th>In / Out</th>
+              <th>Method</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr key={r.id}>
+                <td>{r.date}</td>
+                <td>
+                  <span className={`status-pill status-${r.status}`}>{r.status}</span>
+                  {r.late_minutes > 0 && <span className="muted"> +{r.late_minutes}m</span>}
+                </td>
+                <td>
+                  {clock(r.check_in)} / {clock(r.check_out)}
+                </td>
+                <td className="muted">{r.method || '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   )
 }

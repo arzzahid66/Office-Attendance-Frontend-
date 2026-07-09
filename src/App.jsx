@@ -5,15 +5,14 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Today from './pages/Today'
 import History from './pages/History'
-import WfhRequest from './pages/WfhRequest'
-import ScheduleRequest from './pages/ScheduleRequest'
 import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminApprovals from './pages/admin/AdminApprovals'
 import AdminEmployees from './pages/admin/AdminEmployees'
-import AdminNetworks from './pages/admin/AdminNetworks'
-import AdminWfh from './pages/admin/AdminWfh'
-import AdminSchedule from './pages/admin/AdminSchedule'
+import AdminRosters from './pages/admin/AdminRosters'
+import AdminOffices from './pages/admin/AdminOffices'
 import AdminReports from './pages/admin/AdminReports'
 import AdminFlagged from './pages/admin/AdminFlagged'
+import AdminMore from './pages/admin/AdminMore'
 
 function ProtectedRoute({ role, children }) {
   const { user, loading } = useAuth()
@@ -54,27 +53,6 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/wfh"
-        element={
-          <ProtectedRoute role="employee">
-            <Layout>
-              <WfhRequest />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-      <Route
-        path="/schedule"
-        element={
-          <ProtectedRoute role="employee">
-            <Layout>
-              <ScheduleRequest />
-            </Layout>
-          </ProtectedRoute>
-        }
-      />
-
-      <Route
         path="/admin"
         element={
           <ProtectedRoute role="admin">
@@ -95,31 +73,41 @@ function AppRoutes() {
         }
       />
       <Route
-        path="/admin/networks"
+        path="/admin/approvals"
         element={
           <ProtectedRoute role="admin">
             <Layout>
-              <AdminNetworks />
+              <AdminApprovals />
             </Layout>
           </ProtectedRoute>
         }
       />
       <Route
-        path="/admin/wfh"
+        path="/admin/rosters"
         element={
           <ProtectedRoute role="admin">
             <Layout>
-              <AdminWfh />
+              <AdminRosters />
             </Layout>
           </ProtectedRoute>
         }
       />
       <Route
-        path="/admin/schedule"
+        path="/admin/offices"
         element={
           <ProtectedRoute role="admin">
             <Layout>
-              <AdminSchedule />
+              <AdminOffices />
+            </Layout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/more"
+        element={
+          <ProtectedRoute role="admin">
+            <Layout>
+              <AdminMore />
             </Layout>
           </ProtectedRoute>
         }

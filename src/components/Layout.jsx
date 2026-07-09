@@ -1,24 +1,20 @@
 import { NavLink } from 'react-router-dom'
 import { useAuth } from '../AuthContext'
 import useHeartbeat from '../hooks/useHeartbeat'
-import CheckBanner from './CheckBanner'
 import ThemeToggle from './ThemeToggle'
 
 const employeeTabs = [
   { to: '/', label: 'Today' },
   { to: '/history', label: 'History' },
-  { to: '/wfh', label: 'WFH' },
-  { to: '/schedule', label: 'Hours' },
 ]
 
+// Capped at 5 (mobile bottom-nav guideline). Rosters / Offices / Reports live under "More".
 const adminTabs = [
   { to: '/admin', label: 'Dashboard' },
+  { to: '/admin/approvals', label: 'Approvals' },
   { to: '/admin/employees', label: 'Employees' },
-  { to: '/admin/networks', label: 'Networks' },
-  { to: '/admin/wfh', label: 'WFH' },
-  { to: '/admin/schedule', label: 'Hours' },
-  { to: '/admin/reports', label: 'Reports' },
   { to: '/admin/flagged', label: 'Flagged' },
+  { to: '/admin/more', label: 'More' },
 ]
 
 export default function Layout({ children }) {
@@ -40,10 +36,7 @@ export default function Layout({ children }) {
           </button>
         </div>
       </div>
-      <div className="content">
-        {isEmployee && <CheckBanner />}
-        {children}
-      </div>
+      <div className="content">{children}</div>
       <nav className="tabbar">
         {tabs.map((t) => (
           <NavLink key={t.to} to={t.to} end className={({ isActive }) => (isActive ? 'active' : '')}>
