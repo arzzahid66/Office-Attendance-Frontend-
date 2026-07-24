@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { useAuth } from '../AuthContext'
-import { api } from '../api'
+import { useAuth } from './AuthContext'
+import { api } from '../services/api'
 import ThemeToggle from '../components/ThemeToggle'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

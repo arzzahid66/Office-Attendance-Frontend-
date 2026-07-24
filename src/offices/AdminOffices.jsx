@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api } from '../../api'
+import { api } from '../services/api'
 
 const BLANK = { name: '', latitude: '', longitude: '', radius_meters: 80, timezone: 'Asia/Karachi' }
 

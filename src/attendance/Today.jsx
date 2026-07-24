@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api } from '../api'
-import { useAuth } from '../AuthContext'
+import { api } from '../services/api'
+import { useAuth } from '../auth/AuthContext'
 import Popup from '../components/Popup'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']

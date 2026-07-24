@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api } from '../../api'
+import { api } from '../services/api'
 
 const hhmm = (t) => (t ? t.slice(0, 5) : '')
 

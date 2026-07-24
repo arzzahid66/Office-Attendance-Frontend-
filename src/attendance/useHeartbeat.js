@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { api } from '../api'
+import { api } from '../services/api'
 
 const HEARTBEAT_INTERVAL_MS = 5 * 60 * 1000 // 5 minutes
 

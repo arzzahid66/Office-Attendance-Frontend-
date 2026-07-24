@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
-import { useAuth } from '../AuthContext'
-import useHeartbeat from '../hooks/useHeartbeat'
+import { useAuth } from '../auth/AuthContext'
+import useHeartbeat from '../attendance/useHeartbeat'
 import ThemeToggle from './ThemeToggle'
 
 const employeeTabs = [

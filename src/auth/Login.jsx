@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../AuthContext'
+import { useAuth } from './AuthContext'
 import ThemeToggle from '../components/ThemeToggle'
 
 export default function Login() {

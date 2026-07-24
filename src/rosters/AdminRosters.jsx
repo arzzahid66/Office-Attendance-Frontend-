@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { api } from '../../api'
+import { api } from '../services/api'
 
 const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'] // index = 0..6 (Mon..Sun)
 const hhmm = (t) => (t ? t.slice(0, 5) : '')
